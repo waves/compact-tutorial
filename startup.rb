@@ -5,7 +5,8 @@ module Spitball
 
   module Resources
     class Map
-      on( :get, [ "hello" ] ) { "Hello World!" }
+      on( :get, [ 'hello' ] ) { "Hello World!" }
+      on( :get, [ 'hello', :name ] ) { "Hello, #{captured.name}!" }
     end
   end
 
