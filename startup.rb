@@ -1,12 +1,21 @@
 require 'foundations/compact'
+require 'autocode'
 
 module Spitball
   include Waves::Foundations::Compact
 
   module Resources
+    include AutoCode
+    auto_load true, :directories => '.'
+
     class Map
-      on( :get, [ 'hello' ] ) { "Hello World!" }
-      on( :get, [ 'hello', :name ] ) { "Hello, #{captured.name}!" }
+      on( true ) { to( :greeting ) }
+    end
+  end
+
+  module Configurations
+    class Development
+      reloadable [ Resources ]
     end
   end
 
