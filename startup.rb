@@ -9,7 +9,11 @@ module Spitball
     auto_load true, :directories => '.'
 
     class Map
-      on( true ) { to( :greeting ) }
+      on( true, [ 'hello' ] ) { to( :greeting ) }
+      on( true, [ 'hello', true ] ) { to( :greeting ) }
+      
+      on( true, [ 'pasties' ] ) { to( :pastie ) }
+      on( true, [ 'pasties', true ] ) { to( :pastie ) }
     end
   end
 
