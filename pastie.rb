@@ -25,7 +25,7 @@ module Spitball
       
       def show(name)
         pastie = "pasties/#{name}"
-        response.status = 404 and return "404 Not Found" unless File.exist?( pastie )
+        raise Waves::Dispatchers::NotFoundError unless File.exist?( pastie )
         string = File.read( pastie )
         
         layout :title => "pastie #{name}" do
