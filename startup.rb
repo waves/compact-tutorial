@@ -1,5 +1,12 @@
 require 'foundations/compact'
 
-module SpitBall
+module Spitball
   include Waves::Foundations::Compact
+
+  module Resources
+    class Map
+      on( :get ) { "Hello World!" }
+    end
+  end
+
 end
