@@ -6,6 +6,7 @@ module Spitball
       
       # Request dispatching declarations
       on( :get, [ 'pasties' ] ) { list }
+      on( :get, [ 'pasties', :name ]) { show( captured.name ) }
       
       # Resource methods
       def list
@@ -20,6 +21,19 @@ module Spitball
           end
         end
         
+      end
+      
+      def show(name)
+        pastie = "pasties/#{name}"
+        response.status = 404 and return "404 Not Found" unless File.exist?( pastie )
+        string = File.read( pastie )
+        
+        layout :title => "pastie #{name}" do
+          h1 "Here's a hot pastie!"
+          hr
+          pre { text(string) }
+          hr
+        end
       end
       
       def layout( assigns = {}, &block )
