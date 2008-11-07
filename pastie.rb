@@ -59,14 +59,15 @@ module Spitball
       
       def layout( assigns = {}, &block )
         Markaby::Builder.new assigns do
-          
           html do
-            head { title @title }
+            head do
+              title @title
+              link :href => '/public/site.css', :rel => 'stylesheet', :type => 'text/css'
+            end
             body do
               div.main!(&block)
             end
           end
-          
         end
       end
       

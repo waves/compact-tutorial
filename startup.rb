@@ -20,6 +20,12 @@ module Spitball
   module Configurations
     class Development
       reloadable [ Resources ]
+      
+      application do
+        use ::Rack::ShowExceptions
+        use ::Rack::Static, :urls => [ '/public/site.css' ], :root => './'
+        run ::Waves::Dispatchers::Default.new
+      end
     end
   end
 
